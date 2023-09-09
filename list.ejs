@@ -1,0 +1,39 @@
+<%- include("header"); -%>
+<div class="whole-box">
+  <div class="heading">
+    <h1><%=weekDay %></h1>
+  </div>
+  <div class="box">
+    <div>
+      <% newListItems.forEach(function(items){ %>
+      <form action="/delete" method="POST">
+        <div class="line">
+          <input
+            class="check"
+            type="checkbox"
+            name="checkbox"
+            value="<%= items._id %>"
+            onChange="this.form.submit()"
+          />
+          <input type="hidden" name="hidbtn" value="<%=weekDay %>" />
+          <p><%= items.name%></p>
+        </div>
+      </form>
+
+      <% }); %>
+    </div>
+    <form class="newAdd" action="/" method="POST">
+      <input
+        class="newTask"
+        type="text"
+        name="newItem"
+        placeholder="New Item"
+        autocomplete="off"
+      />
+      <button class="btn" type="submit" value="<%=weekDay %>" name="button">
+        +
+      </button>
+    </form>
+  </div>
+</div>
+<%- include("footer"); -%>
